@@ -10,5 +10,23 @@
         <ImageBrush ImageSource="/Resources/Concrete_wall.jpg"/>
     </Window.Background>
     <Canvas x:Name="canvas">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.01*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Élet:" FontWeight="Thin" Foreground="White" FontSize="20"></Label>
+            <Label Grid.Column="1" Content="{Binding PlayerLife}" FontWeight="Thin" Foreground="White" FontSize="20"></Label>
+            <Label Grid.Column="3" Content="Pontszám:" FontWeight="Thin" Foreground="White" FontSize="20"></Label>
+            <Label Grid.Column="4" Content="{Binding PlayerScorePoint}" FontWeight="Thin" Foreground="White" FontSize="20"></Label>
+        </Grid>
       </Canvas>
 </Window>

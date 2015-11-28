@@ -52,12 +52,6 @@ namespace BrickBreaker_2015.View
                 errorLogViewModel = new ErrorLogViewModel();
                 //canvas.Background = new SolidColorBrush(Colors.White);
 
-                newGameViewModel = new NewGameViewModel(canvas.ActualWidth, canvas.ActualHeight);
-                optionsViewModel = new OptionsViewModel();
-                
-                
-                this.DataContext = newGameViewModel;
-
                 timer = new DispatcherTimer();
                 timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
                 timer.Tick += Timer_Tick;
@@ -166,14 +160,20 @@ namespace BrickBreaker_2015.View
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           newGameViewModel.PresetValues();
+            newGameViewModel = new NewGameViewModel(canvas.ActualWidth, canvas.ActualHeight);
+            optionsViewModel = new OptionsViewModel();
+            this.DataContext = newGameViewModel;
+            newGameViewModel.PresetValues();
+
             foreach (var item in newGameViewModel.BallList)
             {
                 Ball ujlabda = item;
 
                 Ellipse ujLabdaEllipse = new Ellipse();
-                ujLabdaEllipse.Fill = Brushes.Red;
-                ujLabdaEllipse.Stroke = Brushes.Black;
+                ImageBrush myBrush = new ImageBrush();
+                myBrush.ImageSource =
+                    new BitmapImage(new Uri(item.ImagePath,UriKind.Relative));
+                ujLabdaEllipse.Fill = myBrush;
                 canvas.Children.Add(ujLabdaEllipse);
 
                 Binding widthBinding = new Binding("Area.Width");
@@ -197,16 +197,16 @@ namespace BrickBreaker_2015.View
                 Brick ujbrick = item;
 
                 Rectangle ujBrickRect = new Rectangle();
-                ujBrickRect.Fill = Brushes.Beige;
-                ujBrickRect.Stroke = Brushes.Blue;
+                ImageBrush myBrush = new ImageBrush();
+                myBrush.ImageSource =
+                    new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
+                ujBrickRect.Fill = myBrush;
 
-                canvas.Children.Add(ujBrickRect);
-
-                Binding widthBinding = new Binding("Area.Width");
+                Binding widthBinding = new Binding("Area.Height");
                 widthBinding.Source = ujbrick;
                 ujBrickRect.SetBinding(Rectangle.WidthProperty, widthBinding);
 
-                Binding heightBinding = new Binding("Area.Height");
+                Binding heightBinding = new Binding("Area.Width");
                 heightBinding.Source = ujbrick;
                 ujBrickRect.SetBinding(Rectangle.HeightProperty, heightBinding);
 
@@ -217,6 +217,7 @@ namespace BrickBreaker_2015.View
                 Binding yBinding = new Binding("Area.Y");
                 yBinding.Source = ujbrick;
                 ujBrickRect.SetBinding(Canvas.TopProperty, yBinding);
+                canvas.Children.Add(ujBrickRect);
 
             }
 
@@ -225,10 +226,10 @@ namespace BrickBreaker_2015.View
                 Racket racket = item;
 
                 Rectangle ujracket = new Rectangle();
-                ujracket.Fill = Brushes.Beige;
-                ujracket.Stroke = Brushes.Blue;
-
-                canvas.Children.Add(ujracket);
+                ImageBrush myBrush = new ImageBrush();
+                myBrush.ImageSource =
+                    new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
+                ujracket.Fill = myBrush;
 
                 Binding widthBinding = new Binding("Area.Width");
                 widthBinding.Source = racket;
@@ -245,15 +246,10 @@ namespace BrickBreaker_2015.View
                 Binding yBinding = new Binding("Area.Y");
                 yBinding.Source = racket;
                 ujracket.SetBinding(Canvas.TopProperty, yBinding);
-
+                canvas.Children.Add(ujracket);
             }
         }
 
         #endregion Methods
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
