@@ -5,7 +5,7 @@
     <mouse>True</mouse>
     <keyboard>True</keyboard>
     <sound>False</sound>
-    <resolution>800x600</resolution>
+    <resolution>640x480</resolution>
     <leftkey>A</leftkey>
     <rightkey>D</rightkey>
     <pausekey>P</pausekey>
