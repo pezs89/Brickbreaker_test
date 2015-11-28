@@ -77,6 +77,9 @@
     <Compile Include="View\DifficultySelectionWindow.xaml.cs">
       <DependentUpon>DifficultySelectionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GameOver.xaml.cs">
+      <DependentUpon>GameOver.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GamePlayWindow.xaml.cs">
       <DependentUpon>GamePlayWindow.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DifficultySelectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
