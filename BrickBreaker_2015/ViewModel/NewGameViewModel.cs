@@ -396,7 +396,7 @@ namespace BrickBreaker_2015.ViewModel
 
             this.canvasWidth = canvasWidth;
             this.canvasHeight = canvasHeight;
-            PresetValues();
+    
 
             #region SetLabelValues
 
@@ -1346,7 +1346,7 @@ namespace BrickBreaker_2015.ViewModel
         /// <summary>
         /// Presets the values.
         /// </summary>
-        private void PresetValues()
+        public void PresetValues()
         {
             try
             {

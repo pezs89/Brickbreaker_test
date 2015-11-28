@@ -4,8 +4,8 @@
   <option id="1">
     <mouse>True</mouse>
     <keyboard>True</keyboard>
-    <sound>True</sound>
-    <resolution>640x480</resolution>
+    <sound>False</sound>
+    <resolution>800x600</resolution>
     <leftkey>A</leftkey>
     <rightkey>D</rightkey>
     <pausekey>P</pausekey>

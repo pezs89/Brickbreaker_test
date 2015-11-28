@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BrickBreaker_2015.ViewModel;
+using BrickBreaker_2015.Model;
 using System.Windows.Threading;
 
 namespace BrickBreaker_2015.View
@@ -53,7 +54,8 @@ namespace BrickBreaker_2015.View
 
                 newGameViewModel = new NewGameViewModel(canvas.ActualWidth, canvas.ActualHeight);
                 optionsViewModel = new OptionsViewModel();
-
+                
+                
                 this.DataContext = newGameViewModel;
 
                 timer = new DispatcherTimer();
@@ -164,16 +166,94 @@ namespace BrickBreaker_2015.View
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            try
+           newGameViewModel.PresetValues();
+            foreach (var item in newGameViewModel.BallList)
             {
-                newGameViewModel.WindowLoaded();
+                Ball ujlabda = item;
+
+                Ellipse ujLabdaEllipse = new Ellipse();
+                ujLabdaEllipse.Fill = Brushes.Red;
+                ujLabdaEllipse.Stroke = Brushes.Black;
+                canvas.Children.Add(ujLabdaEllipse);
+
+                Binding widthBinding = new Binding("Area.Width");
+                widthBinding.Source = ujlabda;
+                ujLabdaEllipse.SetBinding(Ellipse.WidthProperty, widthBinding);
+
+                Binding heightBinding = new Binding("Area.Height");
+                heightBinding.Source = ujlabda;
+                ujLabdaEllipse.SetBinding(Ellipse.HeightProperty, heightBinding);
+
+                Binding xBinding = new Binding("Area.X");
+                xBinding.Source = ujlabda;
+                ujLabdaEllipse.SetBinding(Canvas.LeftProperty, xBinding);
+
+                Binding yBinding = new Binding("Area.Y");
+                yBinding.Source = ujlabda;
+                ujLabdaEllipse.SetBinding(Canvas.TopProperty, yBinding);
             }
-            catch (Exception error)
+            foreach (var item in newGameViewModel.BrickList)
             {
-                errorLogViewModel.LogError(error);
+                Brick ujbrick = item;
+
+                Rectangle ujBrickRect = new Rectangle();
+                ujBrickRect.Fill = Brushes.Beige;
+                ujBrickRect.Stroke = Brushes.Blue;
+
+                canvas.Children.Add(ujBrickRect);
+
+                Binding widthBinding = new Binding("Area.Width");
+                widthBinding.Source = ujbrick;
+                ujBrickRect.SetBinding(Rectangle.WidthProperty, widthBinding);
+
+                Binding heightBinding = new Binding("Area.Height");
+                heightBinding.Source = ujbrick;
+                ujBrickRect.SetBinding(Rectangle.HeightProperty, heightBinding);
+
+                Binding xBinding = new Binding("Area.X");
+                xBinding.Source = ujbrick;
+                ujBrickRect.SetBinding(Canvas.LeftProperty, xBinding);
+
+                Binding yBinding = new Binding("Area.Y");
+                yBinding.Source = ujbrick;
+                ujBrickRect.SetBinding(Canvas.TopProperty, yBinding);
+
+            }
+
+            foreach (var item in newGameViewModel.RacketList)
+            {
+                Racket racket = item;
+
+                Rectangle ujracket = new Rectangle();
+                ujracket.Fill = Brushes.Beige;
+                ujracket.Stroke = Brushes.Blue;
+
+                canvas.Children.Add(ujracket);
+
+                Binding widthBinding = new Binding("Area.Width");
+                widthBinding.Source = racket;
+                ujracket.SetBinding(Rectangle.WidthProperty, widthBinding);
+
+                Binding heightBinding = new Binding("Area.Height");
+                heightBinding.Source = racket;
+                ujracket.SetBinding(Rectangle.HeightProperty, heightBinding);
+
+                Binding xBinding = new Binding("Area.X");
+                xBinding.Source = racket;
+                ujracket.SetBinding(Canvas.LeftProperty, xBinding);
+
+                Binding yBinding = new Binding("Area.Y");
+                yBinding.Source = racket;
+                ujracket.SetBinding(Canvas.TopProperty, yBinding);
+
             }
         }
 
         #endregion Methods
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
